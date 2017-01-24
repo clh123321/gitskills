@@ -83,6 +83,7 @@
         #region 微信小程序解密
         /// <summary>
         /// 解密方法
+        /// https://mp.weixin.qq.com/debug/wxadoc/dev/api/signature.html
         /// </summary>
         /// <param name="encryptData"></param>
         /// <param name="key"></param>
