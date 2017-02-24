@@ -5,6 +5,7 @@ public class HttpClientHelper
     /// Http同步Post异步请求  
     /// 参考地址    http://www.cnblogs.com/shanyou/archive/2012/03/21/2410739.html
     ///             http://www.tuicool.com/articles/rmiqYz
+    ///             http://www.cnblogs.com/qingyuan/archive/2012/11/08/2760034.html
     /// </summary>
     /// <param name="url"></param>
     /// <param name="postData"></param>
