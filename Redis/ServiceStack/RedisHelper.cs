@@ -1335,6 +1335,50 @@ namespace Redis.Common
         }
 
         #endregion
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        public static int PublishMessage(string key, string message)
+        {
+            using (IRedisClient redis = GetClient())
+            {
+                return redis.PublishMessage("redis:events:" + key, message);//发送消息
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        public static void OnSubscribe(string key)
+        {
+            using (IRedisClient redis = GetClient())
+            {
+                using (var subscription = redis.CreateSubscription())
+                {
+                    subscription.OnSubscribe = channel =>
+                    {
+                        //订阅事件
+                        QuickLib.Log.LogHelp.Logger("OnSubscribe");
+                    };
+                    subscription.OnUnSubscribe = channel =>
+                    {
+                        //退订事件
+                        QuickLib.Log.LogHelp.Logger("退订事件");
+                    };
+                    subscription.OnMessage = (channel, msg) =>
+                    {
+                        QuickLib.Log.LogHelp.Logger("从频道：" + channel + "上接受到消息：" + msg + "");
+                    };
+
+                    subscription.SubscribeToChannels("redis:events:" + key); //blocking
+                }
+            }
+        }
     }
 
     /// <summary>
