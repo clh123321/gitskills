@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace BitAuto.EP.Wx.MSMQ
+namespace AAAAAAAAAAAAA
 {
     public class MSMQHelper
     {
